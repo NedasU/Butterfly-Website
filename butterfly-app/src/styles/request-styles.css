@@ -69,3 +69,17 @@ input:last-of-type{
     justify-self: center;
     align-self: center;
 }
+
+.overlay {
+    position: fixed; /* Use fixed positioning */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Text color */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
