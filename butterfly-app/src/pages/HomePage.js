@@ -2,6 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import Container from "../components/Container"
 import MainContainer from "../components/MainContainer";
 import fetchData from "../data-getter";
+import TitleContainer from "../components/TitleContainer";
+import ContentDiv from "../components/ContentDiv";
 
 export const ProductContext = createContext();
 
@@ -17,7 +19,10 @@ export default function HomePage(){
     return (
         <ProductContext.Provider value={products}>
             <Container>
-                <MainContainer/>
+                <MainContainer>
+                    <TitleContainer/>
+                    <ContentDiv/>
+                </MainContainer>
             </Container>
         </ProductContext.Provider>
     );

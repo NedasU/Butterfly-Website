@@ -1,9 +1,11 @@
-import './styles.css';
+import './styles/styles.css';
 import HomePage from "./pages/HomePage";
+import RequestPage from './pages/RequestPage';
 
 function App() {
   return (
-    <HomePage/>
+    // <HomePage/>
+    <RequestPage/>
   );
 }
 
