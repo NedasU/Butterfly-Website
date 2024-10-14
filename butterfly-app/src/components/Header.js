@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 export default function Header(){
     return (
-        <Link to="/" className="link">
-            <header>
+        <header>
+            <Link to="/" className="link">
                 Bella Accessories
-            </header>
-        </Link>
+            </Link>
+        </header>
     );
 }
