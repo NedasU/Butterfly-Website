@@ -12,6 +12,10 @@ export default function HomePage(){
 
     useEffect(() => {
         // This is where it must make the API call to fetch data
+        // const data = fetch("http://localhost:5000/getbutterflies")
+        // .then(result => result.json())
+        // .then( data => setProducts(data))
+        // .catch((err)=> console.log("An Error Occured!"));
         const data = fetchData();
         setProducts(data);
     }, []);

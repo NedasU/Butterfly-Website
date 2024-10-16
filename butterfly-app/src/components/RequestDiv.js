@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import "../styles/request-styles.css";
 
 export default function RequestDiv(){
@@ -12,6 +12,20 @@ export default function RequestDiv(){
 
     function sendInfo(e) {
         e.preventDefault();
+        fetch("http://localhost:5000/addrequest", {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                info: info,
+            }),
+        }).then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error("Error: ", error));
+
         setShowOverlay(true); // Show the overlay when the form is submitted
         setName("");
         setEmail("");
@@ -26,14 +40,13 @@ export default function RequestDiv(){
     return (
         <div className="background-img">
             {showOverlay && (<div className="overlay">
-                    {/* You can add any message you want here */}
                     <h2>Your request has been submitted!</h2>
                 </div>)}
             <div className="main-container-card">
                 <h2>Got a Special Request?</h2>
                 <label htmlFor="name-input">Your Name <span className="important">*</span></label>
                 <input id="name-input" type="text" placeholder="Your Name" value={name} onChange={(event)=> {setName(event.target.value)}}/>
-                <label htmlFor="email-input">Your <span className="important">*</span></label>
+                <label htmlFor="email-input">Your Email<span className="important">*</span></label>
                 <input id="email-input" type="email" placeholder="Your Email" value={email} onChange={(event) => { setEmail(event.target.value)}}/>
                 <label htmlFor="info-input">Request Details <span className="important">*</span></label>
                 <input id="info-input" type="text" placeholder="Request Details" value={info} onChange={(event) => { setInfo(event.target.value)}}/>

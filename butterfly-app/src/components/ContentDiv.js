@@ -7,8 +7,8 @@ const ContentDiv = () => {
 
     return (
         <div className="content-div">
-            {products.map((product, index) => (
-                <Card key={index} {...product}/>
+            {products.map((product) => (
+                <Card key={product.id} {...product}/>
             ))}
         </div>
     );
