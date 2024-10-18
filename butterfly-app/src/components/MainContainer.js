@@ -1,7 +1,5 @@
-import React, { Children } from "react";
+import React from "react";
 import Header from "./Header";
-import TitleContainer from "./TitleContainer"
-import ContentDiv from "./ContentDiv";
 import Footer from "./Footer";
 
 const MainContainer = ({ children })=> {

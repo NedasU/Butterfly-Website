@@ -20,10 +20,10 @@ app.use(express.json()) // uses only the JSON request Bodies part
 
 // MySQL connection
 const db = mysql.createConnection({
-    host: '',
-    user: '',
-    password: '',
-    database: ''
+    host: 'localhost',
+    user: 'root',
+    password: 'Pass4MySQL123',
+    database: 'butterfly'
 });
 
 // Establishing the connection to the database
@@ -53,7 +53,7 @@ app.post('/addrequest', (req, res) => {
 });
 
 
-app.get("/getbutterflies", (req, res) => {
+app.get("/getproducts", (req, res) => {
     const query = 'SELECT * FROM butterfly_data';
 
     db.query(query, (err, result) => {
@@ -64,6 +64,17 @@ app.get("/getbutterflies", (req, res) => {
         res.json(result);
     });
 });
+
+app.post("/addbutterfly", (req, res)=>{
+    const {imageSrc, title, description, price } = req.body;
+    const query = 'INSERT INTO butterfly_data (imageSrc, title, description, price) VALUES (?,?,?,?)';
+    db.query(query, [imageSrc, title, description, price], (err, result) =>{
+        if (err) {
+            return res.status(500).json({ error: "An Error occured inserting data"})
+        }
+        res.status(201).json({ message: 'Item Added', id: result.insertId });
+    })
+})
 
 // Starting the server here on chosen port
 app.listen(port, ()=> {

@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function TitleContainer(){
+export default function TitleContainer({imgSrc, title}){
     return (
         <div className="title-container">
-            <img className="bg-image" src="/images/photo-collage-2.png.png" alt="Background Image"/>
-            <h2 className="title">Butterflies</h2>
+            <img className="bg-image" src={imgSrc} alt="Background Image"/>
+            <h2 className="title">{title}</h2>
         </div>
     );
 }

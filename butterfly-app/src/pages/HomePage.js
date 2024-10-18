@@ -1,33 +1,20 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import Container from "../components/Container"
 import MainContainer from "../components/MainContainer";
-import fetchData from "../data-getter";
 import TitleContainer from "../components/TitleContainer";
 import ContentDiv from "../components/ContentDiv";
-
-export const ProductContext = createContext();
+import { ProductContext } from "../ContextHooks/ProductContext";
 
 export default function HomePage(){
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        // This is where it must make the API call to fetch data
-        // const data = fetch("http://localhost:5000/getbutterflies")
-        // .then(result => result.json())
-        // .then( data => setProducts(data))
-        // .catch((err)=> console.log("An Error Occured!"));
-        const data = fetchData();
-        setProducts(data);
-    }, []);
+    const products = useContext(ProductContext);
+    const filtered_products = products.filter(product => product.category === "butterfly");
 
     return (
-        <ProductContext.Provider value={products}>
-            <Container>
-                <MainContainer>
-                    <TitleContainer/>
-                    <ContentDiv/>
-                </MainContainer>
-            </Container>
-        </ProductContext.Provider>
+        <Container>
+            <MainContainer>
+                <TitleContainer imgSrc="/images/photo-collage-2.png.png" title="Butterflies"/>
+                <ContentDiv products={filtered_products}/>
+            </MainContainer>
+        </Container>
     );
 }

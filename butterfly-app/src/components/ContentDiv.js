@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
-import { ProductContext } from "../pages/HomePage";
+import React from "react";
 import Card from "./Card"
 
-const ContentDiv = () => {
-    const products = useContext(ProductContext);
+const ContentDiv = ({products}) => {
 
     return (
         <div className="content-div">
             {products.map((product) => (
-                <Card key={product.id} {...product}/>
+                <Card key={product.id} {...product}/> // Also passes the category property but is ignored.
             ))}
         </div>
     );

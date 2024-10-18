@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        h1 {
+            top: 12%;
+            left: 35%;
+            position: absolute;
+            font-size: 3rem;
+        }
+
+        .img-loc {
+            width: 50rem;
+            height: 15rem;
+            position: absolute;
+            top: 25%;
+            align-self: center;
+            margin: 0 auto;
+            border-radius: 2rem;
+            background-color: grey;
+            z-index: 1;
+        }
+
+        .info-surv {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .temp-class {
+            top: 10%;
+            position: relative;
+            width: 40rem;
+            height: auto;
+            min-height: 15rem;
+            background-color: white;
+            border: 1px solid rgb(197, 197, 197);  
+            border-radius: 1rem;
+            padding: 1rem;
+            z-index: 2;
+        }
+
+        .details-title {
+            margin-top: 0.5rem;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-form {
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 2rem;
+        }
+
+        .detail-form label {
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+            color: rgb(131, 131, 131);
+        }
+
+        .detail-form input {
+            border-radius: 0.4rem;
+            padding: 1rem;
+        }
+
+        .submit-div {
+            width: 100%;
+            height: auto;
+            border-top: 1px solid rgb(184, 184, 184);
+            display: flex;
+            align-self: center;
+            margin-right: auto;
+            margin-left: auto;
+            justify-content: end;
+            padding-top: 1rem;
+            gap: 2rem;
+        }
+        
+        #cancel-button {
+            background-color: white;
+            color: black;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        #submit-button {
+            background-color: black;
+            color: white;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <img class="nav-logo" src="logos/Untitled-removebg-preview.png" alt="">
+        </div>
+        <div class="main-container">
+            <header>Bella Accessories</header>
+            <h1>Adding an Item</h1>
+            <div class="img-loc">
+                <!-- <img src="https://media.istockphoto.com/id/931643150/vector/picture-icon.jpg?s=612x612&w=0&k=20&c=St-gpRn58eIa8EDAHpn_yO4CZZAnGD6wKpln9l3Z3Ok=" alt="img here"> -->
+            </div>
+            <div class="info-surv">
+                <h1>Adding an Item</h1>
+                <div class="temp-class">
+                    <h2 class="details-title">Details</h2>
+                    <form class="detail-form">
+                        <label for="title-input">Title</label>
+                        <input id="title-input" type="text">
+                        <label for="description-input">Description</label>
+                        <input id="description-input" type="text">
+                        <label for="price-input">Price</label>
+                        <input id="price-input" type="number" min="0">
+                    </form>
+                    <div class="submit-div">
+                        <button id="cancel-button">Cancel Request</button>
+                        <button id="submit-button">Add Item</button>
+                    </div>
+                </div>
+            </div>
+            <footer>Footer</footer>
+        </div>
+    </div>
+
+    <script>
+
+        function removingEntries(){
+            title.value = "";
+            description.value = "";
+            price.value= "";
+            img_cont.style.backgroundImage = "none";
+        }
+
+
+        const img_cont = document.querySelector(".img-loc");
+        let user_url = "";
+        img_cont.addEventListener("click", () => {
+            user_url = "https://freeiconshop.com/wp-content/uploads/edd/image-outline-filled.png";
+            img_cont.style.backgroundImage = `url(${user_url})`;
+        });
+
+
+        const title = document.getElementById("title-input");
+        const description = document.getElementById("description-input");
+        const price = document.getElementById("price-input");
+
+        const add_item = document.getElementById("submit-button");
+        add_item.addEventListener("click", ()=>{
+
+            fetch("http://localhost:5000/addbutterfly",{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    imageSrc: user_url,
+                    title: title.value,
+                    description: description.value,
+                    price: parseFloat(price.value).toFixed(2),
+                })})
+        .then(result => result.json())
+        .then(data => console.log(data))
+        .catch(err => console.log("An Error Occured: ", err))
+        removingEntries();
+    });
+
+        const cancel_item = document.getElementById("cancel-button");
+        cancel_item.addEventListener("click", removingEntries())
+    </script>
+
+</body>
+</html>
