@@ -10,8 +10,10 @@ This is done by not hard coding components and instead through the use of props 
 
 The switching between pages can be seen updated on the sidebar which highlights the active icon. Additionally, you can see the same format of cards which is done by reusing components to maintain the same format throughtout all pages.
 
-![Requests Page](https://cdn.discordapp.com/attachments/711875973913772063/1297095235863842826/image.png?ex=6714ad93&is=67135c13&hm=8327e29f9296ed40b427efda2d529cf270573562b0ece196cca1061111541897&)
+![Requests Page](https://cdn.discordapp.com/attachments/711875973913772063/1297100181333868585/image.png?ex=6714b22e&is=671360ae&hm=af5235f4c7e1ae9c5c18f5fa37c97f49650658a6dc2ad65cc0722b4c0a4548ed&)
 
 This is a request page where the user can submit personal requests, which are sent to the backend using a POST request handled by Express.js. The data is then stored in an SQL database using queries for later retrieval or processing.
 Several POST and GET requests are utilized in this project to perform CRUD (Create, Read, Update, Delete) operations, ensuring the system remains stateless and responsive. 
 By leveraging RESTful principles, the backend efficiently communicates with the database and client-side, promoting scalability and seamless user interactions.
+
+## Project Still in Development!
