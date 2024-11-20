@@ -17,12 +17,12 @@ const port = 5000;
 app.use(cors()); // allows request from front end
 app.use(express.json()) // uses only the JSON request Bodies part
 
-
+const sql_password = '';
 // MySQL connection
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Pass4MySQL123',
+    password: sql_password,
     database: 'butterfly'
 });
 
